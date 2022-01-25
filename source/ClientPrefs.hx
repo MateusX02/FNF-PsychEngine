@@ -111,7 +111,6 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.framerate = framerate;
-		FlxG.save.data.tirarstage = tirarstage;
 		FlxG.save.data.tirargf = tirargf;
 		FlxG.save.data.tirardialogo = tirardialogo;
 		//FlxG.save.data.cursing = cursing;
