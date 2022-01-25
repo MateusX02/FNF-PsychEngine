@@ -303,9 +303,13 @@ class StoryMenuState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
+			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[curWeek]);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
+			if(leWeek.cutscene)
+			{
+				LoadingState.loadAndSwitchState(new VideoState('assets/videos/' + leWeek.cutscenename, new PlayState()));
+			}
 				FreeplayState.destroyFreeplayVocals();
 			});
 		} else {

@@ -116,6 +116,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			{
 				coolStartDeath();
 				boyfriend.startedDeath = true;
+				{
+					var numSound:Int = FlxG.random.int(1, 10);
+					//ROUBEI MERMO
+					FlxG.sound.play(Paths.soundMP3('gameover/bruh-' + numSound), 1, false, null, true);
+				}
 			}
 		}
 

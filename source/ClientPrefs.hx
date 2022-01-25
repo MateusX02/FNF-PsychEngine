@@ -11,6 +11,7 @@ class ClientPrefs {
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = true;
 	public static var flashing:Bool = true;
+	public static var hitSounds:Bool = false;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -19,6 +20,8 @@ class ClientPrefs {
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
+	public static var tirargf:Bool = false;
+	public static var tirardialogo:Bool = false;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
@@ -108,12 +111,16 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.framerate = framerate;
+		FlxG.save.data.tirarstage = tirarstage;
+		FlxG.save.data.tirargf = tirargf;
+		FlxG.save.data.tirardialogo = tirardialogo;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
+		FlxG.save.data.hitSounds = hitSounds;
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
@@ -158,6 +165,15 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.flashing != null) {
 			flashing = FlxG.save.data.flashing;
+		}
+		if(FlxG.save.data.tirarstage != null) {
+			tirarstage = FlxG.save.data.tirarstage;
+		}
+		if(FlxG.save.data.tirargf != null) {
+			tirargf = FlxG.save.data.tirargf;
+		}
+		if(FlxG.save.data.tirardialogo != null) {
+			tirardialogo = FlxG.save.data.tirardialogo;
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;

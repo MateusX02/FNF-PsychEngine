@@ -802,6 +802,9 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
+		if(ClientPrefs.tirargf){
+			gf = new Character(0, 0, '1x1');
+		} else {
 		gf = new Character(0, 0, gfVersion);
 		startCharacterPos(gf);
 		gf.scrollFactor.set(0.95, 0.95);
@@ -1459,31 +1462,22 @@ class PlayState extends MusicBeatState
 	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
 	{
 		// TO DO: Make this more flexible, maybe?
-		if(psychDialogue != null) return;
-
-		if(dialogueFile.dialogue.length > 0) {
+		if(ClientPrefs.tirardialogos && dialogueFile.dialogue.length > 1) { //Assim vai bugar menos com os dialogos da week 6
 			inCutscene = true;
 			CoolUtil.precacheSound('dialogue');
 			CoolUtil.precacheSound('dialogueClose');
-			psychDialogue = new DialogueBoxPsych(dialogueFile, song);
-			psychDialogue.scrollFactor.set();
+			var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogueFile, song);
+			doof.scrollFactor.set();
 			if(endingSong) {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					endSong();
-				}
+				doof.finishThing = endSong;
 			} else {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					startCountdown();
-				}
+				doof.finishThing = startCountdown;
 			}
-			psychDialogue.nextDialogueThing = startNextDialogue;
-			psychDialogue.skipDialogueThing = skipDialogue;
-			psychDialogue.cameras = [camHUD];
-			add(psychDialogue);
+			doof.nextDialogueThing = startNextDialogue;
+			doof.skipDialogueThing = skipDialogue;
+			doof.cameras = [camHUD];
+			add(doof);
 		} else {
-			FlxG.log.warn('Your dialogue file is badly formatted!');
 			if(endingSong) {
 				endSong();
 			} else {
@@ -3969,6 +3963,9 @@ class PlayState extends MusicBeatState
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
+
+			if (!note.isSustainNote && ClientPrefs.hitSounds) FlxG.sound.play(Paths.sound('hitsound'), 0.7);
+			
 
 			if(!note.noAnimation) {
 				var daAlt = '';
