@@ -166,7 +166,8 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	//apaguei o 16 pois isso é pra quem tem um nokia
-	<icon path="art/icon32.png" size='32'/>
-	<icon path="art/icon64.png" size='64'/>
-	<icon path="art/iconOG.png" />
+	<icon path="icon16.png" size='16'/>
+	<icon path="icon32.png" size='32'/>
+	<icon path="icon64.png" size='64'/>
+	<icon path="iconOG.png" />
 </project>
