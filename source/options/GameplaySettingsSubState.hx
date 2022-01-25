@@ -63,9 +63,30 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Tirar GF',
+			"OTIMIZACAO KEKE",
+			'tirargf',
+			'bool',
+			false);
+		addOption(option);
+
+		var option:Option = new Option('Tirar dialogo',
+			"Menos uso de ram.",
+			'tirardialogo',
+			'bool',
+			false);
+		addOption(option);
+
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
 			'noReset',
+			'bool',
+			false);
+		addOption(option);
+
+		var option:Option = new Option('Hitsounds',
+			'Check this to make a sound whenever a note is hit.',
+			'hitSounds',
 			'bool',
 			false);
 		addOption(option);
