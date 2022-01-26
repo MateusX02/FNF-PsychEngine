@@ -308,7 +308,7 @@ class StoryMenuState extends MusicBeatState
 			{
 			if(leWeek.cutscene)
 			{
-				LoadingState.loadAndSwitchState(new VideoState('assets/videos/' + leWeek.cutscenename, new PlayState()));
+				LoadingState.loadAndSwitchState(new FlxVideo('assets/videos/' + leWeek.cutscenename, new PlayState()));
 			}
 				FreeplayState.destroyFreeplayVocals();
 			});
