@@ -34,8 +34,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		title = 'Gameplay Settings';
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
 		
-		var option:Option = new Option('Controller Mode',
-			'Check this if you want to play with\na controller instead of using your Keyboard.',
+		var option:Option = new Option('Modo de Controle',
+			'Ative se tiver um controle conectado.',
 			'controllerMode',
 			'bool',
 			false);
@@ -43,42 +43,35 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Downscroll', //Name
-			'If checked, notes go Down instead of Up, simple enough.', //Description
+			'Se estiver marcado, as notas irao para o lado inferior da tela.', //Description
 			'downScroll', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
 
 		var option:Option = new Option('Middlescroll',
-			'If checked, your notes get centered.',
+			'Se marcado, as notas do inimigo desaparecerao e as suas notas ficarao no meio.',
 			'middleScroll',
 			'bool',
 			false);
 		addOption(option);
 
 		var option:Option = new Option('Ghost Tapping',
-			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
+			"Se marcado, voce nao vai ser punido se apertar uma tecla quando nao tiver setas para apertar.",
 			'ghostTapping',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Disable Reset Button',
-			"If checked, pressing Reset won't do anything.",
+		var option:Option = new Option('Botao de Reset',
+			"Se marcado, apertar reset não vai dar em nada.",
 			'noReset',
 			'bool',
 			false);
 		addOption(option);
 
-		var option:Option = new Option('Hitsounds',
-			'Check this to make a sound whenever a note is hit.',
-			'hitSounds',
-			'bool',
-			false);
-		addOption(option);
-
-		/*var option:Option = new Option('Note Delay',
-			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
+		/*var option:Option = new Option('Delay das notas',
+			'Troca quando a nota e spawnada, ajuda no lag em fones sem fio.',
 			'noteOffset',
 			'int',
 			0);
@@ -89,7 +82,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);*/
 
 		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
+			'Troca o quanto cedo voce precisa apertar para marcar um Sick!',
 			'ratingOffset',
 			'int',
 			0);
@@ -100,7 +93,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Sick! Hit Window',
-			'Changes the amount of time you have\nfor hitting a "Sick!" in milliseconds.',
+			'Opcao de delay.',
 			'sickWindow',
 			'int',
 			45);
@@ -110,7 +103,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 45;
 		addOption(option);
 
-		var option:Option = new Option('Good Hit Window',
+		var option:Option = new Option('Opcao de delay',
 			'Changes the amount of time you have\nfor hitting a "Good" in milliseconds.',
 			'goodWindow',
 			'int',
@@ -121,7 +114,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 90;
 		addOption(option);
 
-		var option:Option = new Option('Bad Hit Window',
+		var option:Option = new Option('Opcao de delay',
 			'Changes the amount of time you have\nfor hitting a "Bad" in milliseconds.',
 			'badWindow',
 			'int',
@@ -132,8 +125,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 135;
 		addOption(option);
 
-		var option:Option = new Option('Safe Frames',
-			'Changes how many frames you have for\nhitting a note earlier or late.',
+		var option:Option = new Option('Frames seguros',
+			'Altera quantos frames voce tem para\nacionar uma nota mais cedo ou mais tarde.',
 			'safeFrames',
 			'float',
 			10);

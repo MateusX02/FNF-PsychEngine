@@ -38,17 +38,17 @@ class OptionsState extends MusicBeatState
 		switch(label) {
 			case 'Mods':
 				LoadingState.loadAndSwitchState(new ModsMenuState());
-			case 'Note Colors':
+			case 'Cor das notas':
 				openSubState(new options.NotesSubState());
-			case 'Controls':
+			case 'Controles':
 				openSubState(new options.ControlsSubState());
-			case 'Graphics':
+			case 'Graficos':
 				openSubState(new options.GraphicsSettingsSubState());
-			case 'Visuals and UI':
+			case 'Visuals e UI':
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Adjust Delay and Combo':
+			case 'Ajustar delay e combo':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 		}
 	}

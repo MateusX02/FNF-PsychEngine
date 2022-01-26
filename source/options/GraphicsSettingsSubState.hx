@@ -37,15 +37,15 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Low Quality', //Name
-			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
+		var option:Option = new Option('Qualidade baixa', //Name
+			'Se marcado, as imagens ficaram um pouco pixelada, resultando em maior performance.', //Description
 			'lowQuality', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
 
 		var option:Option = new Option('Anti-Aliasing',
-			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',
+			'Se desmarcado, desabilita o Anti Aliasing, resulta em mais FPS.',
 			'globalAntialiasing',
 			'bool',
 			true);
@@ -55,7 +55,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate',
-			"Pretty self explanatory, isn't it?",
+			"Nao vou explicar.",
 			'framerate',
 			'int',
 			60);
@@ -66,19 +66,19 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeFramerate;
 		
 		
-		var option:Option = new Option('Screen Resolution',
-			"Size of the window [Press ACCEPT to apply, CANCEL to cancel]",
+		var option:Option = new Option('Resolucao de tela',
+			"Tamanho da janela [Aperte ACCEPT para aplicar, CANCEL para cancelar]",
 			'screenResTemp',
 			'string',
 			'1280 x 720', ['1280 x 720',
 			'1280 x 960',
-			'FULLSCREEN'
+			'Tela cheia'
 			]);
 		addOption(option);
 		
-		if (ClientPrefs.screenRes == "FULLSCREEN") {
-			var option:Option = new Option('Scale Mode',
-				"How you'd like the screen to scale [Press ACCEPT to apply, CANCEL to cancel] (Adaptive is not compatible with fullscreen.)",
+		if (ClientPrefs.screenRes == "Tela cheia") {
+			var option:Option = new Option('Modo de escala',
+				"Trocar a escala da tela [Aperte ACCEPT para aplicar, CANCEL para cancelar] (Adaptive não e compativel com Tela cheia.)",
 				'screenScaleModeTemp',
 				'string',
 				'LETTERBOX', ['LETTERBOX',
@@ -124,14 +124,14 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	{
 		if(controls.ACCEPT)
 		{
-			if (curOption.name == "Screen Resolution")
+			if (curOption.name == "Resolucao de tela")
 			{
 				ClientPrefs.screenRes = ClientPrefs.screenResTemp;
-				if (ClientPrefs.screenRes == "FULLSCREEN" && ClientPrefs.screenScaleMode == "ADAPTIVE") ClientPrefs.screenScaleMode = "LETTERBOX";
+				if (ClientPrefs.screenRes == "Tela cheia" && ClientPrefs.screenScaleMode == "ADAPTIVE") ClientPrefs.screenScaleMode = "LETTERBOX";
 				onChangeRes ();
 				MusicBeatState.switchState (new options.OptionsState ());
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-			} else if (curOption.name == "Scale Mode")
+			} else if (curOption.name == "Modo de escala")
 			{
 				var shouldReset:Bool = ClientPrefs.screenScaleMode == "ADAPTIVE" || ClientPrefs.screenScaleModeTemp == "ADAPTIVE";
 				ClientPrefs.screenScaleMode = ClientPrefs.screenScaleModeTemp;
@@ -172,7 +172,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	
 	public static function onChangeRes()
 	{
-		FlxG.fullscreen = ClientPrefs.screenRes == "FULLSCREEN";
+		FlxG.fullscreen = ClientPrefs.screenRes == "Tela cheia";
 		if (!FlxG.fullscreen) {
 			var res = ClientPrefs.screenRes.split(" x ");
 			FlxG.resizeWindow(Std.parseInt(res[0]), Std.parseInt(res[1]));
