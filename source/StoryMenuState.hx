@@ -299,17 +299,13 @@ class StoryMenuState extends MusicBeatState
 			if(diffic == null) diffic = '';
 
 			PlayState.storyDifficulty = curDifficulty;
-
+	
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
-			var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[curWeek]);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-			if(leWeek.cutscene)
-			{
-				LoadingState.loadAndSwitchState(new FlxVideo('assets/videos/' + leWeek.cutscenename, new PlayState()));
-			}
+				LoadingState.loadAndSwitchState(new PlayState(), true);
 				FreeplayState.destroyFreeplayVocals();
 			});
 		} else {
