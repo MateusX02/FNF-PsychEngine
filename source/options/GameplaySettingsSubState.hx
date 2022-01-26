@@ -63,20 +63,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Tirar GF',
-			"OTIMIZACAO KEKE",
-			'tirargf',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Tirar dialogo',
-			"Menos uso de ram.",
-			'tirardialogo',
-			'bool',
-			false);
-		addOption(option);
-
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
 			'noReset',
