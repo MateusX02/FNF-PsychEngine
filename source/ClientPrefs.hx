@@ -15,6 +15,7 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var framerate:Int = 60;
+	public static var bfreanim:Bool = false;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
@@ -114,6 +115,7 @@ class ClientPrefs {
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
+		FlxG.save.data.bfreanim = bfreanim;
 		FlxG.save.data.hitSounds = hitSounds;
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
@@ -187,6 +189,9 @@ class ClientPrefs {
 		}*/
 		if(FlxG.save.data.camZooms != null) {
 			camZooms = FlxG.save.data.camZooms;
+		}
+		if(FlxG.save.data.bfreanim != null) {
+			bfreanim = FlxG.save.data.bfreanim;
 		}
 		if(FlxG.save.data.hideHud != null) {
 			hideHud = FlxG.save.data.hideHud;
