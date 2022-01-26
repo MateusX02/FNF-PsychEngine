@@ -62,14 +62,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'bool',
 			true);
 		addOption(option);
-
-		var option:Option = new Option('BF Reanimado',
-			"Skin custom.",
-			'bfreanim',
-			'bool',
-			false);
-		addOption(option);
-
+		
 		var option:Option = new Option('Botao de Reset',
 			"Se marcado, apertar reset não vai dar em nada.",
 			'noReset',
