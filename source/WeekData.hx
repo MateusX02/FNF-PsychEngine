@@ -61,9 +61,9 @@ class WeekData {
 			startUnlocked: true,
 			hideStoryMode: false,
 			hideFreeplay: false,
-			difficulties: ''
 			cutscene: false,
-			cutscenename: 'bruh'
+			cutscenename: 'bruh',
+			difficulties: ''
 		};
 		return weekFile;
 	}
