@@ -11,6 +11,7 @@ class ClientPrefs {
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = true;
 	public static var flashing:Bool = true;
+	public static var hitSounds:Bool = false;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -23,15 +24,11 @@ class ClientPrefs {
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
-	public static var timeBarType:String = 'Time restante';
+	public static var timeBarType:String = 'Time Left';
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
 	public static var controllerMode:Bool = false;
-	public static var screenRes:String = "1280 x 720";
-	public static var screenResTemp:String = "1280 x 720"; // dummy value that isn't saved, used so that if the player cancels instead of hitting space the resolution isn't applied
-	public static var screenScaleMode:String = "Letterbox";
-	public static var screenScaleModeTemp:String = "Letterbox";
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -54,7 +51,6 @@ class ClientPrefs {
 	];
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
-	public static var keSustains:Bool = false; //i was bored, okay?
 	
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
@@ -93,11 +89,6 @@ class ClientPrefs {
 		defaultKeys = keyBinds.copy();
 		//trace(defaultKeys);
 	}
-	public static function resizeScreen() {
-		if(FlxG.save.data.screenRes != null) {
-			screenRes = FlxG.save.data.screenRes;
-		}
-	}
 
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
@@ -114,6 +105,7 @@ class ClientPrefs {
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
+		FlxG.save.data.hitSounds = hitSounds;
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
@@ -131,8 +123,6 @@ class ClientPrefs {
 		FlxG.save.data.safeFrames = safeFrames;
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.controllerMode = controllerMode;
-		FlxG.save.data.screenRes = screenRes;
-		FlxG.save.data.screenScaleMode = screenScaleMode;
 	
 		FlxG.save.flush();
 
@@ -233,12 +223,6 @@ class ClientPrefs {
 		if(FlxG.save.data.controllerMode != null) {
 			controllerMode = FlxG.save.data.controllerMode;
 		}
-		if(FlxG.save.data.screenRes != null) {
-			screenRes = FlxG.save.data.screenRes;
-		}
-		if(FlxG.save.data.screenScaleMode != null) {
-			screenScaleMode = FlxG.save.data.screenScaleMode;
-		}
 		if(FlxG.save.data.gameplaySettings != null)
 		{
 			var savedMap:Map<String, Dynamic> = FlxG.save.data.gameplaySettings;
@@ -282,15 +266,6 @@ class ClientPrefs {
 		FlxG.sound.muteKeys = TitleState.muteKeys;
 		FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
-	}
-	public static function getResolution():Array<Int>{
-		var res = ClientPrefs.screenRes.split(" x ");
-		
-		if (ClientPrefs.screenRes == "FULLSCREEN") res = ["1280", "720"];
-		
-		
-		
-		return [Std.parseInt(res[0]),Std.parseInt(res[1])];
 	}
 	public static function copyKey(arrayToCopy:Array<FlxKey>):Array<FlxKey> {
 		var copiedArray:Array<FlxKey> = arrayToCopy.copy();

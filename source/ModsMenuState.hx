@@ -78,10 +78,9 @@ class ModsMenuState extends MusicBeatState
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
-		bg.scale.x = bg.scale.y = scaleRatio;
 		bg.screenCenter();
-		noModsTxt = new FlxText(0, 0, FlxG.width, "Sem mods instalados\nSaia e instala um mod", 48);
-		if(FlxG.random.bool(0.1)) noModsTxt.text += '\nSe inscreve no meu canal po.'; //meanie
+		noModsTxt = new FlxText(0, 0, FlxG.width, "NO MODS INSTALLED\nPRESS BACK TO EXIT AND INSTALL A MOD", 48);
+		if(FlxG.random.bool(0.1)) noModsTxt.text += '\nBITCH.'; //meanie
 		noModsTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		noModsTxt.scrollFactor.set();
 		noModsTxt.borderSize = 2;

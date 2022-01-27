@@ -12,10 +12,6 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
-import flixel.system.scaleModes.BaseScaleMode;
-import flixel.system.scaleModes.FillScaleMode;
-import flixel.system.scaleModes.FixedScaleMode;
-import flixel.system.scaleModes.StageSizeScaleMode;
 import haxe.Json;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
@@ -172,10 +168,14 @@ class TitleState extends MusicBeatState
 		super.create();
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		if(!initialized && FlxG.save.data != null && FlxG.save.data.fullscreen)
+			{
+				FlxG.fullscreen = FlxG.save.data.fullscreen;
+				//trace('LOADED FULLSCREEN SETTING!!');
+			}
 		
 		ClientPrefs.loadPrefs();
-		
-		GraphicsSettingsSubState.onChangeRes();
 
 		Highscore.load();
 
@@ -375,7 +375,7 @@ class TitleState extends MusicBeatState
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
 		ngSpr.updateHitbox();
 		ngSpr.screenCenter(X);
-		ngSpr.antialiasing = true;
+		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
@@ -409,11 +409,6 @@ class TitleState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
-
-		if (FlxG.keys.justPressed.F && ClientPrefs.screenScaleMode != "ADAPTIVE")
-		{
-			FlxG.fullscreen = !FlxG.fullscreen;
-		}
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
@@ -590,8 +585,10 @@ class TitleState extends MusicBeatState
 				case 3:
 					#if PSYCH_WATERMARKS
 					addMoreText('MateusX02', 15);
+					addMoreText('com colaboracao', 15);
+					addMoreText('de outras pessoas', 15);
 					#else
-					addMoreText('apresenta');
+					addMoreText('present');
 					#end
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
@@ -602,12 +599,12 @@ class TitleState extends MusicBeatState
 				// credTextShit.screenCenter();
 				case 5:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Nao associado', 'pela'], -40);
+					createCoolText(['Not associado', 'com a'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end
 				case 7:
-					addMoreText('newgrounds', -40);
+					addMoreText('Newgrounds', -40);
 					ngSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
 				case 8:
@@ -644,14 +641,6 @@ class TitleState extends MusicBeatState
 	}
 
 	var skippedIntro:Bool = false;
-	override public function fixAspectRatio() 
-	{
-		super.fixAspectRatio();
-		
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		#end
-	}
 	function skipIntro():Void
 	{
 		if (!skippedIntro)

@@ -24,11 +24,11 @@ class OutdatedState extends MusicBeatState
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			"Carinha, tu ta usando uma   \n
-			versao antiga da Nither Engine (" + MainMenuState.psychEngineVersion + "),\n
-			atualiza ae " + TitleState.updateVersion + "!\n
+			"Sup bro, looks like you're running an   \n
+			outdated version of Psych Engine (" + MainMenuState.psychEngineVersion + "),\n
+			please update to " + TitleState.updateVersion + "!\n
 			\n
-			Obrigado por usar!",
+			Thank you for using the Engine!",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);

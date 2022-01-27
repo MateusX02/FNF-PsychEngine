@@ -43,7 +43,6 @@ class CreditsState extends MusicBeatState
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);
 
-		bg.scale.x = bg.scale.y = scaleRatio;
 		bg.screenCenter();
 		
 		grpOptions = new FlxTypedGroup<Alphabet>();
@@ -83,11 +82,7 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Nither Engine'],
-			['MateusX02',		'discord',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
-			['Team Silver',		'1',		'Algumas ferramentas',						'https://youtu.be/DLzxrzFCyOs',	'444444'],
-			['Leuther128',		'1',		'Algumas ferramentas',						'https://youtu.be/DLzxrzFCyOs',	'444444'],
-			['KadeDev',		'1',		'Algumas ferramentas',						'https://youtu.be/DLzxrzFCyOs',	'444444'],
-			['ShadowMario/BBPanzu',		'1',		'Algumas ferramentas',						'https://youtu.be/DLzxrzFCyOs',	'444444']
+			['MateusX02',		'discord',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444']
 		];
 		
 		for(i in pisspoop){
