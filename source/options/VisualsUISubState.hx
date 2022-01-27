@@ -34,51 +34,51 @@ class VisualsUISubState extends BaseOptionsMenu
 		title = 'Visuals and UI';
 		rpcTitle = 'Visuals & UI Settings Menu'; //for Discord Rich Presence
 
-		var option:Option = new Option('Splashes das notas',
-			"Se desmarcado, as notas nao vao mais ter particulas.",
+		var option:Option = new Option('Note Splashes',
+			"If unchecked, hitting \"Sick!\" notes won't show particles.",
 			'noteSplashes',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Esconder HUD',
-			'Se marcado, esconde a maior parte do HUD.',
+		var option:Option = new Option('Hide HUD',
+			'If checked, hides most HUD elements.',
 			'hideHud',
 			'bool',
 			false);
 		addOption(option);
 		
-		var option:Option = new Option('Barra de Tempo:',
-			"Nao vou dizer nada.",
+		var option:Option = new Option('Time Bar:',
+			"What should the Time Bar display?",
 			'timeBarType',
 			'string',
-			'Tempo restante',
-			['Tempo restante', 'Tempo passado', 'Nome da musica', 'Desabilitado']);
+			'Time Left',
+			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 
-		var option:Option = new Option('Luzes Piscantes',
-			"Desative se voce e sensivel!",
+		var option:Option = new Option('Flashing Lights',
+			"Uncheck this if you're sensitive to flashing lights!",
 			'flashing',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Zooms da camera',
-			"Se desmarcado, a tela nao vai mais dar zoom.",
+		var option:Option = new Option('Camera Zooms',
+			"If unchecked, the camera won't zoom in on a beat hit.",
 			'camZooms',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Zoom de texto de pontuação ao acertar',
-			"Nao vou dizer nada. (denovo)",
+		var option:Option = new Option('Score Text Zoom on Hit',
+			"If unchecked, disables the Score text zooming\neverytime you hit a note.",
 			'scoreZoom',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Transparencia da barra de HP',
-			'Quao transparentes a barra e os icones vao ser.',
+		var option:Option = new Option('Health Bar Transparency',
+			'How much transparent should the health bar and icons be.',
 			'healthBarAlpha',
 			'percent',
 			1);

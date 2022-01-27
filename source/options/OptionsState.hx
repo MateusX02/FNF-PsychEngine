@@ -38,17 +38,17 @@ class OptionsState extends MusicBeatState
 		switch(label) {
 			case 'Mods':
 				LoadingState.loadAndSwitchState(new ModsMenuState());
-			case 'Cor das notas':
+			case 'Note Colors':
 				openSubState(new options.NotesSubState());
-			case 'Controles':
+			case 'Controls':
 				openSubState(new options.ControlsSubState());
-			case 'Graficos':
+			case 'Graphics':
 				openSubState(new options.GraphicsSettingsSubState());
-			case 'Visuals e UI':
+			case 'Visuals and UI':
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Ajustar delay e combo':
+			case 'Adjust Delay and Combo':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 		}
 	}
@@ -63,8 +63,8 @@ class OptionsState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.color = 0xFFea71fd;
-		bg.setGraphicSize(Std.int(bg.width * 1.1*scaleRatio));
 		bg.updateHitbox();
+
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);

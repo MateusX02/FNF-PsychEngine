@@ -37,15 +37,15 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Qualidade baixa', //Name
-			'Se marcado, as imagens ficaram um pouco pixelada, resultando em maior performance.', //Description
+		var option:Option = new Option('Low Quality', //Name
+			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
 			'lowQuality', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
 
 		var option:Option = new Option('Anti-Aliasing',
-			'Se desmarcado, desabilita o Anti Aliasing, resulta em mais FPS.',
+			'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.',
 			'globalAntialiasing',
 			'bool',
 			true);
@@ -55,54 +55,16 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate',
-			"Nao vou explicar.",
+			"Pretty self explanatory, isn't it?",
 			'framerate',
 			'int',
 			60);
 		addOption(option);
+
 		option.minValue = 60;
 		option.maxValue = 240;
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
-		
-		
-		var option:Option = new Option('Resolucao de tela',
-			"Tamanho da janela [Aperte ACCEPT para aplicar, CANCEL para cancelar]",
-			'screenResTemp',
-			'string',
-			'1280 x 720', ['1280 x 720',
-			'1280 x 960',
-			'Tela cheia'
-			]);
-		addOption(option);
-		
-		if (ClientPrefs.screenRes == "Tela cheia") {
-			var option:Option = new Option('Modo de escala',
-				"Trocar a escala da tela [Aperte ACCEPT para aplicar, CANCEL para cancelar] (Adaptive não e compativel com Tela cheia.)",
-				'screenScaleModeTemp',
-				'string',
-				'LETTERBOX', ['LETTERBOX',
-				'PAN',
-				'STRETCH'
-				]);
-			addOption(option);
-		} else {
-			var option:Option = new Option('Scale Mode',
-				"Scale Mode [Press ACCEPT to apply, CANCEL to cancel] (Adaptive is unstable and may cause visual issues and doesn't work with fullscreen!)",//summerized < 333
-				'screenScaleModeTemp',
-				'string',
-				'LETTERBOX', ['LETTERBOX',
-				'PAN',
-				'STRETCH',
-				'ADAPTIVE'
-				]);
-			addOption(option);
-		}
-		// before you tell me "why add adaptive in" i didn't add it in. someone changed the default behavior to be like adaptive which was way too buggy so i'm making it optional
-		//thx, niko
-		//      -bbpanzu
-		ClientPrefs.screenScaleModeTemp = ClientPrefs.screenScaleMode;
-		ClientPrefs.screenResTemp = ClientPrefs.screenRes;
 		#end
 
 		/*
@@ -118,30 +80,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 
 
 		super();
-	}
-
-	override function update (elapsed:Float)
-	{
-		if(controls.ACCEPT)
-		{
-			if (curOption.name == "Resolucao de tela")
-			{
-				ClientPrefs.screenRes = ClientPrefs.screenResTemp;
-				if (ClientPrefs.screenRes == "Tela cheia" && ClientPrefs.screenScaleMode == "ADAPTIVE") ClientPrefs.screenScaleMode = "LETTERBOX";
-				onChangeRes ();
-				MusicBeatState.switchState (new options.OptionsState ());
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-			} else if (curOption.name == "Modo de escala")
-			{
-				var shouldReset:Bool = ClientPrefs.screenScaleMode == "ADAPTIVE" || ClientPrefs.screenScaleModeTemp == "ADAPTIVE";
-				ClientPrefs.screenScaleMode = ClientPrefs.screenScaleModeTemp;
-				if (ClientPrefs.screenScaleMode == "ADAPTIVE") onChangeRes ();
-				if (shouldReset) MusicBeatState.switchState (new options.OptionsState ());
-				else MusicBeatState.musInstance.fixAspectRatio ();
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-			}
-		}
-		super.update(elapsed);
 	}
 
 	function onChangeAntiAliasing()
@@ -169,23 +107,4 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
-	
-	public static function onChangeRes()
-	{
-		FlxG.fullscreen = ClientPrefs.screenRes == "Tela cheia";
-		if (!FlxG.fullscreen) {
-			var res = ClientPrefs.screenRes.split(" x ");
-			FlxG.resizeWindow(Std.parseInt(res[0]), Std.parseInt(res[1]));
-			// FlxG.resizeGame(Std.parseInt(res[0]), Std.parseInt(res[1]));
-			// Lib.application.window.width = Std.parseInt(res[0]);
-			// Lib.application.window.height = Std.parseInt(res[1]);
-			// Lib.current.stage.width = Std.parseInt(res[0]);
-			// Lib.current.stage.height = Std.parseInt(res[1]);
-			FlxCamera.defaultZoom = 1280/Std.parseInt(res[0]);
-		}
-
-		MusicBeatState.musInstance.fixAspectRatio ();
-		// FlxG.resetState();
-	}
-
 }

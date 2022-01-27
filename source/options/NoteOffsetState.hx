@@ -467,9 +467,9 @@ class NoteOffsetState extends MusicBeatState
 		beatText.visible = !onComboMenu;
 
 		if(onComboMenu)
-			changeModeText.text = '< Offset de combo (Aperte ACCEPT para trocar) >';
+			changeModeText.text = '< Combo Offset (Press Accept to Switch) >';
 		else
-			changeModeText.text = '< Note/Beat Delay (Aperte ACCEPT para trocar) >';
+			changeModeText.text = '< Note/Beat Delay (Press Accept to Switch) >';
 
 		changeModeText.text = changeModeText.text.toUpperCase();
 		FlxG.mouse.visible = onComboMenu;
