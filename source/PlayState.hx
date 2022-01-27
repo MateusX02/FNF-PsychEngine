@@ -3970,9 +3970,6 @@ if(psychDialogue != null) return;
 			}
 			health += note.hitHealth * healthGain;
 
-			if (!note.isSustainNote && ClientPrefs.hitSounds) FlxG.sound.play(Paths.sound('hitsound'), 0.7);
-			
-
 			if(!note.noAnimation) {
 				var daAlt = '';
 				if(note.noteType == 'Alt Animation') daAlt = '-alt';
