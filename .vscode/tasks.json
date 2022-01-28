@@ -4,14 +4,14 @@
 		{
 			"type": "lime",
 			"command": "build",
-			"targetConfiguration": "Android",
+			"targetConfiguration": "Windows",
 			"problemMatcher": [
 				"$haxe-absolute",
 				"$haxe",
 				"$haxe-error",
 				"$haxe-trace"
 			],
-			"label": "lime: build android",
+			"label": "lime: build windows",
 			"group": {
 				"kind": "build",
 				"isDefault": true
