@@ -101,7 +101,6 @@ class MusicBeatState extends FlxUIState
 				//trace('resetted');
 			} else {
 				CustomFadeTransition.finishCallback = function() {
-					musInstance.fixAspectRatio();
 					FlxG.switchState(nextState);
 				};
 				//trace('changed state');
