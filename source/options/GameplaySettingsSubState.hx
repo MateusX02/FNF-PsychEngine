@@ -71,8 +71,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Hitsounds',
-			'Check this to make a sound whenever a note is hit.',
-			'hitSounds',
+			'Barulhin.',
+			'hitsounds',
 			'bool',
 			false);
 		addOption(option);

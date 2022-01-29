@@ -49,7 +49,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'globalAntialiasing',
 			'bool',
 			true);
-		option.showBoyfriend = true;
+		option.showBoyfriend = false;
 		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 
@@ -58,10 +58,10 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			"Pretty self explanatory, isn't it?",
 			'framerate',
 			'int',
-			60);
+			120);
 		addOption(option);
 
-		option.minValue = 60;
+		option.minValue = 30;
 		option.maxValue = 240;
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
