@@ -51,7 +51,7 @@ class FlashingState extends MusicBeatState
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							//Testando umas coisas da Psych ae.
-							startVideo('SMWGO'); //Meu mano, vai em MP4 mesmo, pq não é android RALKSDJFILASUDFPIOWEF
+							MusicBeatState.switchState(new FlxVideo('assets/videos/SMWGO', new MainMenuState()));
 						});
 					});
 				} else {
