@@ -3368,6 +3368,9 @@ if(psychDialogue != null) return;
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
+		if (ClientPrefs.hitsounds)
+			FlxG.sound.play(Paths.sound('hitsound'));
+
 		// boyfriend.playAnim('hey');
 		vocals.volume = 1;
 
@@ -3922,8 +3925,6 @@ if(psychDialogue != null) return;
 				if(combo > 9999) combo = 9999;
 			}
 			health += note.hitHealth * healthGain;
-
-			if (!note.isSustainNote && ClientPrefs.hitSounds) FlxG.sound.play(Paths.sound('hitsound'), 0.7);
 			
 
 			if(!note.noAnimation) {
