@@ -82,7 +82,11 @@ class CreditsState extends MusicBeatState
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Nither Engine'],
-			['MateusX02',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444']
+			['MateusX02',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
+			['TeamSiver',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
+			['Leather128',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
+			['KadeDev',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
+			['Gui iago',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444']
 		];
 		
 		for(i in pisspoop){
