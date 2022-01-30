@@ -4573,9 +4573,9 @@ if(psychDialogue != null) return;
 			if(unlock) {
 				Achievements.unlockAchievement(achievementName);
 				return achievementName;
+				return null;
 			}
 		}
-		return null;
 	}
 	#end
 
