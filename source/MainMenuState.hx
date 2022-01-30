@@ -220,9 +220,7 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('secretSound'));
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
-			Imagemmano.loadGraphic(Paths.image('Unlocked/BFREANIMADO'));
-			//Não sei se essa parte vai ser utilizável.
-			if (controls.BACK) MusicBeatState.switchState(new MainMenuState());
+			MusicBeatState.switchState(new UnlockedState());
 			}
 
 		if (!selectedSomethin)
