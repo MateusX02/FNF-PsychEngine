@@ -4581,4 +4581,6 @@ if(psychDialogue != null) return;
 
 	var curLight:Int = 0;
 	var curLightEvent:Int = 0;
-}
+	}
+
+
