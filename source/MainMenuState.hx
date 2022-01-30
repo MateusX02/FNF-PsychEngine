@@ -45,6 +45,7 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
+	var Imagemmano:FlxSprite;
 
 	override function create()
 	{
@@ -67,6 +68,8 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
+		Imagemmano = new FlxSprite();
+		
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('altMenuBG'));
 		bg.scrollFactor.set(0, yScroll);
@@ -156,7 +159,7 @@ class MainMenuState extends MusicBeatState
 				var achieveID:Int = Achievements.getAchievementIndex('week7_nomiss'); //Feel ther power of gambiarra
 				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-					giveAchievement();
+					giveAchievemento();
 					ClientPrefs.easteregg = false;
 					ClientPrefs.saveSettings();
 					}
@@ -165,7 +168,7 @@ class MainMenuState extends MusicBeatState
 				var achieveID:Int = Achievements.getAchievementIndex('debugger'); //Feel ther power of gambiarra
 				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
 					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-					giveAchievement();
+					giveAchievemente();
 					ClientPrefs.nedleeds = false;
 					ClientPrefs.saveSettings();
 					}
@@ -184,14 +187,14 @@ class MainMenuState extends MusicBeatState
 	}
 
 	// Bandeira de pirata???
-	function giveAchievement() {
+	function giveAchievemento() {
 		add(new AchievementObject('week7_nomiss', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Achievment Seu Madruga Will Go On desbloqueado!"');
 	}
 
 	// Bandeira de pirata???
-	function giveAchievement() {
+	function giveAchievemente() {
 		add(new AchievementObject('bullymaguire', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Achievment Bully Maguire desbloqueado!"');
@@ -210,6 +213,18 @@ class MainMenuState extends MusicBeatState
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
+		if (FlxKey.B)
+			{
+			ClientPrefs.unlockedbf = true; //Testando meu conhecimentO (0.2)
+			ClientPrefs.saveSettings();
+			FlxG.sound.play(Paths.sound('secretSound'));
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			Imagemmano.loadGraphic(Paths.image('Unlocked/BFREANIMADO'));
+			//Não sei se essa parte vai ser utilizável.
+			if (controls.BACK) MusicBeatState.switchState(new MainMenuState());
+			}
+
 		if (!selectedSomethin)
 		{
 			if (controls.UI_UP_P)
@@ -217,7 +232,6 @@ class MainMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
-
 			if (controls.UI_DOWN_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));

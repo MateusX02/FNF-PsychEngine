@@ -494,7 +494,7 @@ class TitleState extends MusicBeatState
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									startVideo('BullyMaguire', new MainMenuState());
+									usicBeatState.switchState(new FlxVideo('assets/videos/BullyMaguire', new MainMenuState()));
 								}
 							});
 							lastKeysPressed = [];

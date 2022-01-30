@@ -158,7 +158,7 @@ class LoadingState2 extends MusicBeatState
 			&& isLibraryLoaded("shared");
 		
 		if (!loaded)
-			return new GambiarraState(target, stopMusic);
+			return new LoadingState2(target, stopMusic);
 
 		//#end
 		if (stopMusic && FlxG.sound.music != null)

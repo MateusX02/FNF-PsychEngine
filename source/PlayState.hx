@@ -820,7 +820,7 @@ class PlayState extends MusicBeatState
 		startCharacterLua(dad.curCharacter);
 		
 		if(ClientPrefs.personagens){
-			boyfriend = new Character(0, 0, '1x1');
+			boyfriend = new Boyfriend(0, 0, '1x1');
 		} else {
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
 		}
