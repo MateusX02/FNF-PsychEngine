@@ -4574,13 +4574,5 @@ if(psychDialogue != null) return;
 				Achievements.unlockAchievement(achievementName);
 				return achievementName;
 				return null;
+				#end			
 			}
-		}
-	}
-	#end
-
-	var curLight:Int = 0;
-	var curLightEvent:Int = 0;
-	}
-
-
