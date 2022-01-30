@@ -67,8 +67,8 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
-	var easterEggEnabled:Bool = false; //Disable this to hide the easter egg
-	var easterEggKeyCombination:Array<FlxKey> = [FlxKey.B, FlxKey.B]; //bb stands for bbpanzu cuz he wanted this lmao
+	var easterEggEnabled:Bool = true; //Disable this to hide the easter egg
+	var easterEggKeyCombination:Array<FlxKey> = [FlxKey.B, FlxKey.M]; //bb stands for bbpanzu cuz he wanted this lmao
 	var lastKeysPressed:Array<FlxKey> = [];
 
 	var mustUpdate:Bool = false;
@@ -452,7 +452,7 @@ class TitleState extends MusicBeatState
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					if (mustUpdate) {
-						MusicBeatState.switchState(new OutdatedState());
+						MusicBeatState.switchState(new MainMenuState()); //preguiça jeej
 					} else {
 						MusicBeatState.switchState(new MainMenuState());
 					}
@@ -480,9 +480,10 @@ class TitleState extends MusicBeatState
 							}
 						}
 
-						/*if(!isDifferent) {
-							trace('Easter egg triggered!');
-							FlxG.save.data.psykaEasterEgg = !FlxG.save.data.psykaEasterEgg;
+						//RESSURGI O BAGUI DAS CINZASS!! //EU REUTILIZEI UM EASTER EGG, mas troquei umas coisas
+						if(!isDifferent) {
+							trace('Bully Maguire!!');
+							ClientPrefs.nedleeds = true; //Obrigado, Matheus Silver!
 							FlxG.sound.play(Paths.sound('secretSound'));
 
 							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -493,13 +494,13 @@ class TitleState extends MusicBeatState
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
+									startVideo('BullyMaguire', new MainMenuState());
 								}
 							});
 							lastKeysPressed = [];
 							closedState = true;
 							transitioning = true;
-						}*/
+						}
 					}
 				}
 			}

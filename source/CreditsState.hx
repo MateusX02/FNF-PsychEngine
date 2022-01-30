@@ -81,12 +81,14 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['Nither Engine'],
-			['MateusX02',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
-			['TeamSiver',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
-			['Leather128',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
-			['KadeDev',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444'],
-			['Gui iago',		'MateusX02',		'Programador da engine',						'www.youtube.com/MateusX02',	'444444']
+			['Nither Engine e colaboracoes'],
+			['MateusX02',		'MateusX02',		'Programador da engine',									'www.youtube.com/MateusX02',	'444444'],
+			['TeamSiver',		'Silver',			'Inspiracao e algumas partes do code',						'https://www.youtube.com/c/MatheusSilver',	'444444'],
+			['Leather128',		'Leather',			'Inspiracao e algumas partes do code',						'https://www.youtube.com/channel/UCbCtO-ghipZessWaOBx8u1g',	'444444'],
+			['KadeDev',			'KadeDev',			'Inspiracao e algumas partes do code',						'https://www.youtube.com/c/KadeDev',	'444444'],
+			['Gui_iago',		'GuiIago',			'Inspiracao e algumas partes do code',						'https://www.youtube.com/channel/UCRryHY1wB_lbrGePPfPKyGw',	'444444'],
+			['ShadowMario',		'ShadowMario',		'Engine base (Psych Engine)',								'https://www.youtube.com/c/ShadowMarioModder/featured',	'444444'],
+			['NinjaMuffin99',	'NinjaMuffin',		'Criador do proprio FNF',									'https://twitter.com/ninja_muffin99',	'444444']
 		];
 		
 		for(i in pisspoop){
@@ -128,7 +130,7 @@ class CreditsState extends MusicBeatState
 		}
 
 		descText = new FlxText(50, 600, 1180, "", 32);
-		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		descText.setFormat(Paths.font("Hey Comic.ttf"), 32, FlxColor.BLUE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
 		add(descText);

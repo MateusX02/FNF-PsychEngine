@@ -39,6 +39,8 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
+import LoadingState;
+import LoadingState2;
 import lime.utils.Assets;
 import openfl.Lib;
 import openfl.display.BlendMode;
@@ -57,6 +59,7 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Shaders;
+
 
 #if sys
 import sys.FileSystem;
@@ -796,18 +799,31 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
+		if(ClientPrefs.gf){
+			gf = new Character(0, 0, '1x1');
+		} else {
 		gf = new Character(0, 0, gfVersion);
+		}
 		startCharacterPos(gf);
 		gf.scrollFactor.set(0.95, 0.95);
 		gfGroup.add(gf);
-		startCharacterLua(gf.curCharacter);
 
+		//Pelo o que eu entendi, Dad sempre vai ser o Player 2
+		//então, se ele ficar invisivel, todos os oponentes também vão ficar?
+		if(ClientPrefs.personagens){
+			dad = new Character(0, 0, '1x1');
+		} else { 
 		dad = new Character(0, 0, SONG.player2);
+		}
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 		startCharacterLua(dad.curCharacter);
 		
+		if(ClientPrefs.personagens){
+			boyfriend = new Character(0, 0, '1x1');
+		} else {
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		}
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
@@ -870,13 +886,14 @@ class PlayState extends MusicBeatState
 		}
 		updateTime = showTime;
 
+		//puts cara, já sei uma solução mano
 		timeBarBG = new AttachedSprite('timeBar');
 		timeBarBG.x = timeTxt.x;
 		timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
 		timeBarBG.scrollFactor.set();
 		timeBarBG.alpha = 0;
 		timeBarBG.visible = showTime;
-		timeBarBG.color = FlxColor.BLACK;
+		timeBarBG.color = FlxColor.BLUE; //EU QUERIA DEIXAR AZUL DESDE SEMPRE ASDJFÇKLAJSDLKFJAÇLKSDJF
 		timeBarBG.xAdd = -4;
 		timeBarBG.yAdd = -4;
 		add(timeBarBG);
@@ -3310,8 +3327,8 @@ if(psychDialogue != null) return;
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
 					} else {
-						cancelMusicFadeTween();
-						LoadingState.loadAndSwitchState(new PlayState());
+						cancelMusicFadeTween(); //pequenas mudancas pois estamos na 5.1 agora meu chapa
+						LoadingState2.loadAndSwitchState(new PlayState());
 					}
 				}
 			}
@@ -4547,11 +4564,11 @@ if(psychDialogue != null) return;
 							unlock = true;
 						}
 					case 'debugger':
-						if(Paths.formatToSongPath(SONG.song) == 'test' && !usedPractice) {
+						if(ClientPrefs.nedleeds)
 							unlock = true;
 						}
+					}
 				}
-			}
 
 			if(unlock) {
 				Achievements.unlockAchievement(achievementName);

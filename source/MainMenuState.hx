@@ -142,19 +142,38 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		#if ACHIEVEMENTS_ALLOWED
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
+			Achievements.loadAchievements();
+			var leDate = Date.now();
+			if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+				var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement();
+					ClientPrefs.saveSettings();
+				}
 			}
+			if(ClientPrefs.easteregg){
+				var achieveID:Int = Achievements.getAchievementIndex('week7_nomiss'); //Feel ther power of gambiarra
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement();
+					ClientPrefs.easteregg = false;
+					ClientPrefs.saveSettings();
+					}
+			} //Oh yeah boai!!
+			if(ClientPrefs.nedleeds){
+				var achieveID:Int = Achievements.getAchievementIndex('debugger'); //Feel ther power of gambiarra
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) {
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement();
+					ClientPrefs.nedleeds = false;
+					ClientPrefs.saveSettings();
+					}
+			} //Oh yeah boai!!
+			#end
+	
+			super.create();
 		}
-		#end
-
-		super.create();
-	}
 
 	#if ACHIEVEMENTS_ALLOWED
 	// Unlocks "Freaky on a Friday Night" achievement
@@ -162,6 +181,20 @@ class MainMenuState extends MusicBeatState
 		add(new AchievementObject('friday_night_play', camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 		trace('Giving achievement "friday_night_play"');
+	}
+
+	// Bandeira de pirata???
+	function giveAchievement() {
+		add(new AchievementObject('week7_nomiss', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Achievment Seu Madruga Will Go On desbloqueado!"');
+	}
+
+	// Bandeira de pirata???
+	function giveAchievement() {
+		add(new AchievementObject('bullymaguire', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Achievment Bully Maguire desbloqueado!"');
 	}
 	#end
 

@@ -45,7 +45,7 @@ class FlashingState extends MusicBeatState
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				if(!back) {
-					ClientPrefs.flashing = false;
+					ClientPrefs.flashing = false; //desativado, escrevi isso pra não esquecer
 					ClientPrefs.saveSettings();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
@@ -54,10 +54,12 @@ class FlashingState extends MusicBeatState
 						});
 					});
 				} else {
-					FlxG.sound.play(Paths.sound('cancelMenu'));
+					ClientPrefs.easteregg = true; //Obrigado, Matheus Silver!
+					ClientPrefs.saveSettings();
+					FlxG.sound.play(Paths.sound('secretSound'));
 					FlxTween.tween(warnText, {alpha: 0}, 1, {
 						onComplete: function (twn:FlxTween) {
-							MusicBeatState.switchState(new TitleState());
+							startVideo('SMWGO', new MainMenuState());
 						}
 					});
 				}

@@ -51,7 +51,10 @@ class ClientPrefs {
 
 	// Coisas adicionadas na Nither Engine
 	public static var hitsounds:Bool = false;
-	public static var otimizacao:Bool = false; // Porque eu dei comentário aqui?!?!?!?
+	public static var gf:Bool = false;
+	public static var personagens:Bool = false;
+	public static var easteregg:Bool = false;
+	public static var nedleeds:Bool = false;
 
 	//Só pra separar as linhas aqui
 
@@ -105,6 +108,10 @@ class ClientPrefs {
 		FlxG.save.data.framerate = framerate;
 		// eu adicionei
 		FlxG.save.data.hitsounds = hitsounds;
+		FlxG.save.data.gf = gf;
+		FlxG.save.data.personagens = gf;
+		FlxG.save.data.easteregg = easteregg;
+		FlxG.save.data.nedleeds = nedleeds;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
@@ -225,10 +232,25 @@ class ClientPrefs {
 		if(FlxG.save.data.safeFrames != null) {
 			safeFrames = FlxG.save.data.safeFrames;
 		}
-		// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		// Eu adicionei
 		if(FlxG.save.data.hitsounds != null) {
 			hitsounds = FlxG.save.data.hitsounds;
 		}
+		if(FlxG.save.data.gf != null) {
+			gf = FlxG.save.data.gf;
+		}
+		if(FlxG.save.data.personagens != null) {
+			personagens = FlxG.save.data.personagens;
+		}
+		if(FlxG.save.data.easteregg != null) {
+			easteregg = FlxG.save.data.easteregg;
+		}
+		if(FlxG.save.data.nedleeds != null) {
+			nedleeds = FlxG.save.data.nedleeds;
+		}
+
+
+		
 		if(FlxG.save.data.controllerMode != null) {
 			controllerMode = FlxG.save.data.controllerMode;
 		}
