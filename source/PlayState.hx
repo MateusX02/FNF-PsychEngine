@@ -229,8 +229,6 @@ class PlayState extends MusicBeatState
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
-	var curLight:Int = 0;
-	var curLightEvent:Int = 0;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -4565,16 +4563,22 @@ if(psychDialogue != null) return;
 						if(/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing /*&& !ClientPrefs.imagesPersist*/) {
 							unlock = true;
 						}
-					case 'debugger':
-						if(ClientPrefs.nedleeds)
-							unlock = true;
-						}
+						case 'debugger':
+							if(Paths.formatToSongPath(SONG.song) == 'test' && !usedPractice) {
+								unlock = true;
+							}
 					}
 				}
 
-			if(unlock) {
-				Achievements.unlockAchievement(achievementName);
-				return achievementName;
-				return null;			
+				if(unlock) {
+					Achievements.unlockAchievement(achievementName);
+					return achievementName;
+				}
 			}
-
+			return null;
+		}
+		#end
+	
+		var curLight:Int = 0;
+		var curLightEvent:Int = 0;
+}
