@@ -229,6 +229,8 @@ class PlayState extends MusicBeatState
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
+	var curLight:Int = 0;
+	var curLightEvent:Int = 0;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -4573,6 +4575,6 @@ if(psychDialogue != null) return;
 			if(unlock) {
 				Achievements.unlockAchievement(achievementName);
 				return achievementName;
-				return null;
-				#end			
+				return null;			
 			}
+
