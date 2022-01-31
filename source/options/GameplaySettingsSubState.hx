@@ -77,13 +77,15 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false);
 		addOption(option);
 
-		if(ClientPrefs.unlockedbf = true)
+		
 		var option:Option = new Option('BF Reanimado',
 			'Eba!.',
 			'bfreanimado',
 			'bool',
 			false);
+		if(ClientPrefs.unlockedbf = true)
 		addOption(option);
+		
 
 		/*var option:Option = new Option('Note Delay',
 			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
