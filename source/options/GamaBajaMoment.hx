@@ -51,5 +51,8 @@ class GamaBajaMoment extends BaseOptionsMenu
 			'bool',
 			false);
 		addOption(option);	
+
+		super();
+		
 		}
 	}
