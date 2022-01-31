@@ -18,7 +18,6 @@ import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import WeekData;
-import LoadingState;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
@@ -260,28 +259,28 @@ class FreeplayState extends MusicBeatState
 		if(songs.length > 1)
 		{
 			if (upP)
+			{
+				changeSelection(-shiftMult);
+				holdTime = 0;
+			}
+			if (downP)
+			{
+				changeSelection(shiftMult);
+				holdTime = 0;
+			}
+
+			if(controls.UI_DOWN || controls.UI_UP)
+			{
+				var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
+				holdTime += elapsed;
+				var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
+
+				if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 				{
-					changeSelection(-shiftMult);
-					holdTime = 0;
-				}
-				if (downP)
-				{
-					changeSelection(shiftMult);
-					holdTime = 0;
-				}
-	
-				if(controls.UI_DOWN || controls.UI_UP)
-				{
-					var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
-					holdTime += elapsed;
-					var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
-	
-					if(holdTime > 0.5 && checkNewHold - checkLastHold > 0)
-					{
-						changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
-					}
+					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
 				}
 			}
+		}
 
 		if (controls.UI_LEFT_P)
 			changeDiff(-1);
@@ -301,7 +300,6 @@ class FreeplayState extends MusicBeatState
 
 		if(ctrl)
 		{
-			
 			persistentUpdate = false;
 			openSubState(new GameplayChangersSubstate());
 		}
@@ -354,10 +352,11 @@ class FreeplayState extends MusicBeatState
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			if(colorTween != null) {
 				colorTween.cancel();
+			}
 			
 			if (FlxG.keys.pressed.SHIFT){
 				LoadingState.loadAndSwitchState(new ChartingState());
-			} else {
+			}else{
 				LoadingState.loadAndSwitchState(new PlayState());
 			}
 
@@ -372,7 +371,6 @@ class FreeplayState extends MusicBeatState
 		}
 		super.update(elapsed);
 	}
-}	
 
 	public static function destroyFreeplayVocals() {
 		if(vocals != null) {

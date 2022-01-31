@@ -494,7 +494,7 @@ class TitleState extends MusicBeatState
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									CoolUtil.browserLoad('https://youtu.be/FULkj3cLEhE');
+									CoolUtil.browserLoad('https://youtu.be/FULkj3cLEhE', new MainMenuState()));
 								}
 							});
 							lastKeysPressed = [];

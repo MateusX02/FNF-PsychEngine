@@ -1,25 +1,40 @@
 package;
-
-import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.system.FlxSound;
+import flixel.*;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
-class UnlockedState extends MusicBeatState
+// Autor: BBPanzu
+// Modificações: MateusX02
+
+class UnlockedState extends FlxState
 {
-    var Imagemmano:FlxSprite;
 
-    override function create()
-    {
-    // é só isso, consertei umas coisas
-    Imagemmano = new FlxSprite();
-    Imagemmano.loadGraphic(Paths.image('Unlocked/BFREANIMADO')); //Omega SUSUSUSUSUSUSUUSUSUSUSUS
-
-    if (controls.BACK) 
-        {
-            FlxG.sound.play(Paths.sound('cancelMenu'));
-            MusicBeatState.switchState(new MainMenuState());
-        }
-        
-    }
+	public function new() 
+	{
+		super();
+	}
+	
+	override public function create():Void 
+	{
+		super.create();
+		
+		var SPRITE:FlxSprite = new FlxSprite(0, 0);
+		SPRITE.loadGraphic("assets/shared/Unlocked/BFREANIMADO.png", false, 1280, 720);
+		add(SPRITE);
+	}
+	public override function update(elapsed){
+		
+        // Aqui vai ativar o bagui denovo (Eu fiz esse State novo, por conta de bugs e tal)
+		if (FlxG.keys.justPressed.ENTER){
+			ClientPrefs.unlockedbf = true;
+			FlxG.switchState(new MainMenuState());
+		}
+		if (FlxG.keys.justPressed.BACKSPACE){
+			ClientPrefs.unlockedbf = true;
+			FlxG.switchState(new MainMenuState());
+		}
+		super.update(elapsed);
+	}
+	
 }
