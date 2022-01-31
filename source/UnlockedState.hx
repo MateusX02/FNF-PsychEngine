@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 
-class MainMenuState extends MusicBeatState
+class UnlockedState extends MusicBeatState
 {
     var Imagemmano:FlxSprite;
 

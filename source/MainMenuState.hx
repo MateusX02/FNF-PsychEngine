@@ -213,7 +213,7 @@ class MainMenuState extends MusicBeatState
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
-		if (FlxKey.B)
+		if (FlxKey.justPressed.B)
 			{
 			ClientPrefs.unlockedbf = true; //Testando meu conhecimentO (0.2)
 			ClientPrefs.saveSettings();

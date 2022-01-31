@@ -57,7 +57,7 @@ class ClientPrefs {
 	public static var nedleeds:Bool = false;
 	//mecânica nova???
 	public static var unlockedbf:Bool = false;
-
+	public static var bfreanimado:Bool = false;
 
 	//Só pra separar as linhas aqui
 
@@ -116,6 +116,7 @@ class ClientPrefs {
 		FlxG.save.data.easteregg = easteregg;
 		FlxG.save.data.nedleeds = nedleeds;
 		FlxG.save.data.unlockedbf = unlockedbf;
+		FlxG.save.data.bfreanimado = bfreanimado;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
@@ -254,6 +255,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.unlockedbf != null) {
 			unlockedbf = FlxG.save.data.unlockedbf;
+		}
+		if(FlxG.save.data.bfreanimado != null) {
+			bfreanimado = bfreanimado;
 		}
 
 

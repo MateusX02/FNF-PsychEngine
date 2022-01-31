@@ -59,7 +59,7 @@ class FlashingState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('secretSound'));
 					FlxTween.tween(warnText, {alpha: 0}, 1, {
 						onComplete: function (twn:FlxTween) {
-							MusicBeatState.switchState(new FlxVideo('assets/videos/SMWGO', new MainMenuState()));
+							CoolUtil.browserLoad('https://youtu.be/ettaeKZHAwA');
 						}
 					});
 				}

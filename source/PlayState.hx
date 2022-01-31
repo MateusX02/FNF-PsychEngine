@@ -819,6 +819,12 @@ class PlayState extends MusicBeatState
 		dadGroup.add(dad);
 		startCharacterLua(dad.curCharacter);
 		
+		
+		if(ClientPrefs.bfreanimado){
+			boyfriend = new Boyfriend(0, 0, 'bfreanim');
+		} else {
+		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		}
 		if(ClientPrefs.personagens){
 			boyfriend = new Boyfriend(0, 0, '1x1');
 		} else {
