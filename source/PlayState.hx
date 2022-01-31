@@ -40,7 +40,6 @@ import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
 import LoadingState;
-import LoadingState2;
 import lime.utils.Assets;
 import openfl.Lib;
 import openfl.display.BlendMode;
@@ -3333,8 +3332,8 @@ if(psychDialogue != null) return;
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
 					} else {
-						cancelMusicFadeTween(); //pequenas mudancas pois estamos na 5.1 agora meu chapa
-						LoadingState2.loadAndSwitchState(new PlayState());
+						cancelMusicFadeTween();
+						LoadingState.loadAndSwitchState(new PlayState());
 					}
 				}
 			}

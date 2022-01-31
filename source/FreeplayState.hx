@@ -18,7 +18,7 @@ import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import WeekData;
-import LoadingState2;
+import LoadingState;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
@@ -351,13 +351,9 @@ class FreeplayState extends MusicBeatState
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 
-			//trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
+			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			if(colorTween != null) {
 				colorTween.cancel();
-			}
-			FlxG.sound.music.volume = 0;
-			destroyFreeplayVocals();
-			LoadingState2.loadAndSwitchState(new PlayState());
 			
 			if (FlxG.keys.pressed.SHIFT){
 				LoadingState.loadAndSwitchState(new ChartingState());
@@ -376,6 +372,7 @@ class FreeplayState extends MusicBeatState
 		}
 		super.update(elapsed);
 	}
+}	
 
 	public static function destroyFreeplayVocals() {
 		if(vocals != null) {

@@ -16,7 +16,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
-import LoadingState2; //Funciona mermao
 import LoadingState;
 import flixel.graphics.FlxGraphic;
 import WeekData;
@@ -307,7 +306,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.campaignMisses = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				LoadingState2.loadAndSwitchState(new PlayState(), true);
+				LoadingState.loadAndSwitchState(new PlayState(), true);
 				FreeplayState.destroyFreeplayVocals();
 			});
 		} else {
