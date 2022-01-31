@@ -819,19 +819,18 @@ class PlayState extends MusicBeatState
 		startCharacterLua(dad.curCharacter);
 		
 		
-		if(ClientPrefs.bfreanimado){
-			boyfriend = new Boyfriend(0, 0, 'bfreanim');
-		} else {
-		boyfriend = new Boyfriend(0, 0, SONG.player1);
-		}
+		
 		if(ClientPrefs.personagens){
 			boyfriend = new Boyfriend(0, 0, '1x1');
+		if(ClientPrefs.bfreanimado){
+			boyfriend = new Boyfriend(0,0, 'bfreanim');
 		} else {
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
 		}
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
+		}
 		
 		var camPos:FlxPoint = new FlxPoint(gf.getGraphicMidpoint().x, gf.getGraphicMidpoint().y);
 		camPos.x += gf.cameraPosition[0];
