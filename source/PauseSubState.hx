@@ -161,6 +161,7 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resumir a musica":
+					if(FlxG.keys.justPressed.ENTER) //Eu sei lá mano wtf XDDDD
 					close();
 				case 'Trocar dificuldade':
 					menuItems = difficultyChoices;

@@ -33,6 +33,10 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+	//BF
+	private var char1:Character = null;
+	//GF
+	private var char2:Character = null;
 
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -46,7 +50,6 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-	var creditText:FlxText;
 
 	override function create()
 	{
@@ -114,7 +117,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			//menuItem.screenCenter(X);
+			menuItem.x += 250;
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -124,21 +128,27 @@ class MainMenuState extends MusicBeatState
 			menuItem.updateHitbox();
 		}
 
+		//TF2 é engraçado //Reaproveitando as prefs por conta de pre--Falta de vontade.
+		ClientPrefs.unlockedbf = true;
+
 		FlxG.camera.follow(camFollowPos, null, 1);
+
+		if (FlxG.random.bool(1.0)) //sodasse
+			{
+				char2 = new Character(800,-1430, 'gf', true);
+				char2.setGraphicSize(Std.int(char2.width * 0.8));
+				add(char2);
+				char2.visible = true;
+			}
+
+		char1 = new Character(800,-1430, 'bf', true);
+		char1.setGraphicSize(Std.int(char1.width * 0.8));
+		add(char1);
+		char1.visible = true;
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "NitherEngine v" + nitherEngineVersion, 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "PsychEngine v" + psychEngineVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 14, 0, "Friday Night Funkin v" + fridayNightVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLUE);
 		add(versionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
@@ -146,13 +156,13 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		#if ACHIEVEMENTS_ALLOWED
-			Achievements.loadAchievements();
-			var leDate = Date.now();
-			if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+			Achievements.loadAchievements();		
+				if(ClientPrefs.unlockedbf){
 				var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
 				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
 					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
 					giveAchievement();
+					ClientPrefs.unlockedbf = false;
 					ClientPrefs.saveSettings();
 				}
 			}
@@ -216,7 +226,7 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.B)
 			{
-			FlxG.sound.play(Paths.sound('secretSound')); //muito sus
+			FlxG.sound.play(Paths.sound('Untitled')); //muito sus
 			}
 
 		if (!selectedSomethin)
@@ -281,17 +291,19 @@ class MainMenuState extends MusicBeatState
 				}
 			}
 
-			creditText = new FlxText(876, 648, 348);
-			creditText.text = 'Ola, File.saveContent(CoolSystemStuff.getUserSus()!';
-			creditText.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-			creditText.scrollFactor.set();
-			add(creditText);
+			
+			else if (FlxG.keys.anyJustPressed(debugKeys))
+			{
+				selectedSomethin = true;
+				MusicBeatState.switchState(new MasterEditorMenu());	
+			}
+
 
 		super.update(elapsed);
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.screenCenter(X);
+			//spr.screenCenter(X);
 		});
 	}
 

@@ -66,7 +66,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.displayFormat = '%vX';
 		optionsArray.push(option);*/
 
-		var option:GameplayOption = new GameplayOption('Multiplicador de Ganho de Vida', 'healthgain', 'float', 1);
+		var option:GameplayOption = new GameplayOption('Multi. de Ganho de Vida', 'healthgain', 'float', 1);
 		option.scrollSpeed = 2.5;
 		option.minValue = 0;
 		option.maxValue = 5;
@@ -74,7 +74,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.displayFormat = '%vX';
 		optionsArray.push(option);
 
-		var option:GameplayOption = new GameplayOption('Multiplicador de Perda de Vida', 'healthloss', 'float', 1);
+		var option:GameplayOption = new GameplayOption('Multi. de Perda de Vida', 'healthloss', 'float', 1);
 		option.scrollSpeed = 2.5;
 		option.minValue = 0.5;
 		option.maxValue = 5;

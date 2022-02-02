@@ -55,7 +55,6 @@ class ClientPrefs {
 	public static var personagens:Bool = false;
 	public static var easteregg:Bool = false;
 	public static var nedleeds:Bool = false;
-	//mecânica nova???
 	public static var unlockedbf:Bool = false;
 	public static var bfreanimado:Bool = false;
 
