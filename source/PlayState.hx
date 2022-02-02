@@ -3241,7 +3241,7 @@ if(psychDialogue != null) return;
 
 			if (chartingMode)
 			{
-				openChartEditor();
+				MusicBeatState.switchState(new editors.ChartingState());
 				return;
 			}
 
