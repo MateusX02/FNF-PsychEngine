@@ -28,7 +28,7 @@ class FlashingState extends MusicBeatState
 			Essa engine tem algumas luzes piscantes!\n
 			Caso for sensivel a luzes fortes, desative!!\n
 			Pressione ENTER para desabilitar.\n
-			ou ESCAPE para ignorar.\n
+			ou algum botao ae para um secreto.\n
 			Voce foi avisado, meu bom!",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
@@ -59,8 +59,7 @@ class FlashingState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('secretSound')); //what
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-							//Agora em WEBM
-							MusicBeatState.switchState(new VideoState('assets/videos/SMWGO', new TitleState()));
+							CoolUtil.browserLoad('https://youtu.be/ettaeKZHAwA');
 						});
 					});
 				}

@@ -216,7 +216,7 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.B)
 			{
-			FlxG.sound.play(Paths.sound('secretoSoundo')); //muito sus
+			FlxG.sound.play(Paths.sound('secretSound')); //muito sus
 			}
 
 		if (!selectedSomethin)
@@ -286,14 +286,6 @@ class MainMenuState extends MusicBeatState
 			creditText.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			creditText.scrollFactor.set();
 			add(creditText);
-
-			#if desktop
-			else if (FlxG.keys.anyJustPressed(debugKeys))
-			{
-				selectedSomethin = true;
-				MusicBeatState.switchState(new MasterEditorMenu());
-			}
-			#end
 
 		super.update(elapsed);
 

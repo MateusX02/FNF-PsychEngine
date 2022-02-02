@@ -492,7 +492,7 @@ class TitleState extends MusicBeatState
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new VideoState('assets/videos/BullyMaguire', new MainMenuState()));
+									CoolUtil.browserLoad('https://youtu.be/nVmXsBNfwHY');
 								}
 							});
 							lastKeysPressed = [];
