@@ -113,9 +113,15 @@
 	<haxelib name="flixel" />
 	<haxedev set='webgl' />
 
+
 	<!--In case you want to use the addons package-->
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
+
+	<haxelib name="actuate" />
+	<haxelib name="extension-webview"/>
+	<haxelib name="actuate" />
+	<haxelib name="extension-webm" if="desktop" />		
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
