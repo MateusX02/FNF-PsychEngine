@@ -2358,7 +2358,7 @@ if(psychDialogue != null) return;
 
 		if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
 		{
-			openChartEditor();
+			MusicBeatState.switchState(new editors.ChartingState());
 		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
@@ -2666,7 +2666,7 @@ if(psychDialogue != null) return;
 		persistentUpdate = false;
 		paused = true;
 		cancelMusicFadeTween();
-		MusicBeatState.switchState(new ChartingState());
+		MusicBeatState.switchState(new editors.ChartingState());
 		chartingMode = true;
 
 		#if desktop
