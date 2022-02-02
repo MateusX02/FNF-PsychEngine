@@ -798,7 +798,7 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		if(ClientPrefs.gf){
+		if(ClientPrefs.personagens){
 			gf = new Character(0, 0, '1x1');
 		} else {
 		gf = new Character(0, 0, gfVersion);

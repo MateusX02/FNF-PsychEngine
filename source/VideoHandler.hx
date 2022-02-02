@@ -1,4 +1,3 @@
-//This was made by GWebDev lol btw this uses actuate
 package;
 
 import motion.Actuate;

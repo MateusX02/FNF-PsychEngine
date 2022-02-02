@@ -9,7 +9,7 @@ import webm.*;
 class WebmHandler
 {
 	#if desktop
-	public var webm:WebmPlayer;
+	public var webm:VideoState;
 	public var vidPath:String = "";
 	public var io:WebmIo;
 	public var initialized:Bool = false;
@@ -29,7 +29,7 @@ class WebmHandler
 	public function makePlayer():Void
 	{
 		io = new WebmIoFile(vidPath);
-		webm = new WebmPlayer();
+		webm = new VideoState();
 		webm.fuck(io, false);
 		webm.addEventListener(WebmEvent.PLAY, function(e) {
 			onPlay();

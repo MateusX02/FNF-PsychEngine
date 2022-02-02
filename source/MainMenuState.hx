@@ -27,16 +27,11 @@ class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.5.1'; //This is also used for Discord RPC
 	public static var nitherEngineVersion:String = '0.1.0'; //to nem aí, até que ficou legalzin
-	public static var fridayNightVersion:String = '0.2.7.1';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
-	//BF
-	private var char1:Character = null;
-	//GF
-	private var char2:Character = null;
 
 	var optionShit:Array<String> = [
 		'story_mode',
@@ -117,8 +112,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			//menuItem.screenCenter(X);
-			menuItem.x += 250;
+			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -132,19 +126,6 @@ class MainMenuState extends MusicBeatState
 		ClientPrefs.unlockedbf = true;
 
 		FlxG.camera.follow(camFollowPos, null, 1);
-
-		if (FlxG.random.bool(1.0)) //sodasse
-			{
-				char2 = new Character(800,-1430, 'gf', true);
-				char2.setGraphicSize(Std.int(char2.width * 0.8));
-				add(char2);
-				char2.visible = true;
-			}
-
-		char1 = new Character(800,-1430, 'bf', true);
-		char1.setGraphicSize(Std.int(char1.width * 0.8));
-		add(char1);
-		char1.visible = true;
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "NitherEngine v" + nitherEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -303,7 +284,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			//spr.screenCenter(X);
+			spr.screenCenter(X);
 		});
 	}
 
