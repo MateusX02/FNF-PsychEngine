@@ -38,13 +38,6 @@ class GamaBajaMoment extends BaseOptionsMenu
 		title = 'Otimizacao';
 		rpcTitle = 'Menu de Otimizacao'; //for Discord Rich Presence
 
-		var option:Option = new Option('Remover Girlfriend',
-			"Ajuda no FPS.",
-			'gf',
-			'bool',
-			false);
-		addOption(option);
-
 		var option:Option = new Option('Remover todos os personagens',
 			"Ajuda no FPS.",
 			'personagens',

@@ -31,54 +31,54 @@ class VisualsUISubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Visuals and UI';
-		rpcTitle = 'Visuals & UI Settings Menu'; //for Discord Rich Presence
+		title = 'Visuals e UI';
+		rpcTitle = 'Menu de configuracoes de Visuals & UI'; //for Discord Rich Presence
 
 		var option:Option = new Option('Note Splashes',
-			"If unchecked, hitting \"Sick!\" notes won't show particles.",
+			"Se desmarcado, acertar \"Sick!\" nao ira mas mostrar particulas.",
 			'noteSplashes',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Hide HUD',
-			'If checked, hides most HUD elements.',
+		var option:Option = new Option('Esconder HUD',
+			'Se marcado, esconde a maioria de imagens do HUD.',
 			'hideHud',
 			'bool',
 			false);
 		addOption(option);
 		
-		var option:Option = new Option('Time Bar:',
-			"What should the Time Bar display?",
+		var option:Option = new Option('Barra de Tempo:',
+			"auto explicativo??",
 			'timeBarType',
 			'string',
-			'Time Left',
-			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
+			'Tempo Restante',
+			['Tempo Restante', 'Tempo Passado', 'Nome da Musica', 'Desabilitado']);
 		addOption(option);
 
-		var option:Option = new Option('Flashing Lights',
-			"Uncheck this if you're sensitive to flashing lights!",
+		var option:Option = new Option('Luzes Piscantes',
+			"Desmarque caso for sensivel a luzes piscantes!",
 			'flashing',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Camera Zooms',
-			"If unchecked, the camera won't zoom in on a beat hit.",
+		var option:Option = new Option('Zooms da Camera',
+			"Se desmarcado, a camera nao vai mais dar zooms.",
 			'camZooms',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Score Text Zoom on Hit',
-			"If unchecked, disables the Score text zooming\neverytime you hit a note.",
+		var option:Option = new Option('Zoom de Score Text',
+			"Se desmarca--Ah mano...",
 			'scoreZoom',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Health Bar Transparency',
-			'How much transparent should the health bar and icons be.',
+		var option:Option = new Option('Transparencia da barra de vida',
+			'Auto explicativo mermao.',
 			'healthBarAlpha',
 			'percent',
 			1);
@@ -90,8 +90,8 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 		
 		#if !mobile
-		var option:Option = new Option('FPS Counter',
-			'If unchecked, hides FPS Counter.',
+		var option:Option = new Option('Contador de FPS',
+			'Se desmarcado, esconde o counter.',
 			'showFPS',
 			'bool',
 			true);

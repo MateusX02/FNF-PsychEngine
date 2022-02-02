@@ -31,11 +31,11 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Gameplay Settings';
-		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
+		title = 'Configuracoes de Gameplay';
+		rpcTitle = 'Menu de Configuracos de Gameplay'; //for Discord Rich Presence
 		
-		var option:Option = new Option('Controller Mode',
-			'Check this if you want to play with\na controller instead of using your Keyboard.',
+		var option:Option = new Option('Modo de controle',
+			'Ative isso caso quiser jogar\ncom um controle.',
 			'controllerMode',
 			'bool',
 			false);
@@ -43,50 +43,40 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Downscroll', //Name
-			'If checked, notes go Down instead of Up, simple enough.', //Description
+			'Se marcado, as notas que estao em cima, vao pra baixo.', //Description
 			'downScroll', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
 
 		var option:Option = new Option('Middlescroll',
-			'If checked, your notes get centered.',
+			'Se marcado, as notas irao ficar no centro.',
 			'middleScroll',
 			'bool',
 			false);
 		addOption(option);
 
 		var option:Option = new Option('Ghost Tapping',
-			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
+			"Se marcado, voce nao sera punido caso aperte uma tecla aleatoria.",
 			'ghostTapping',
 			'bool',
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Disable Reset Button',
-			"If checked, pressing Reset won't do anything.",
+		var option:Option = new Option('Desabilitar botao de reset',
+			"Se marcado, caso voce aperte o botao de reset, nada vai acontecer.",
 			'noReset',
 			'bool',
 			false);
 		addOption(option);
 
 		var option:Option = new Option('Hitsounds',
-			'Barulhin.',
+			'Se marcado, faz um som quando voce aperta uma nota.',
 			'hitsounds',
 			'bool',
 			false);
 		addOption(option);
-
 		
-		var option:Option = new Option('BF Reanimado',
-			'Eba!.',
-			'bfreanimado',
-			'bool',
-			false);
-		if(ClientPrefs.unlockedbf = true)
-		addOption(option);
-		
-
 		/*var option:Option = new Option('Note Delay',
 			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
 			'noteOffset',
@@ -99,7 +89,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);*/
 
 		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
+			'Troca quando tarde/cedo os ratings vao aparecer.',
 			'ratingOffset',
 			'int',
 			0);
@@ -142,8 +132,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 135;
 		addOption(option);
 
-		var option:Option = new Option('Safe Frames',
-			'Changes how many frames you have for\nhitting a note earlier or late.',
+		var option:Option = new Option('Frames seguros',
+			':/.',
 			'safeFrames',
 			'float',
 			10);
