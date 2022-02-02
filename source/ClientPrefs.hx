@@ -51,7 +51,7 @@ class ClientPrefs {
 
 	// Coisas adicionadas na Nither Engine
 	public static var hitsounds:Bool = false;
-	public static var gf:Bool = false;
+	public static var s:Bool = false;
 	public static var personagens:Bool = false;
 	public static var easteregg:Bool = false;
 	public static var nedleeds:Bool = false;
@@ -111,8 +111,8 @@ class ClientPrefs {
 		FlxG.save.data.framerate = framerate;
 		// eu adicionei
 		FlxG.save.data.hitsounds = hitsounds;
-		FlxG.save.data.gf = gf;
-		FlxG.save.data.personagens = gf;
+		FlxG.save.data.s = s;
+		FlxG.save.data.personagens = personagens;
 		FlxG.save.data.easteregg = easteregg;
 		FlxG.save.data.nedleeds = nedleeds;
 		FlxG.save.data.unlockedbf = unlockedbf;
@@ -241,8 +241,8 @@ class ClientPrefs {
 		if(FlxG.save.data.hitsounds != null) {
 			hitsounds = FlxG.save.data.hitsounds;
 		}
-		if(FlxG.save.data.gf != null) {
-			gf = FlxG.save.data.gf;
+		if(FlxG.save.data.s != null) {
+			s = FlxG.save.data.s;
 		}
 		if(FlxG.save.data.personagens != null) {
 			personagens = FlxG.save.data.personagens;

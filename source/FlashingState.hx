@@ -54,13 +54,14 @@ class FlashingState extends MusicBeatState
 						});
 					});
 				} else {
-					ClientPrefs.easteregg = true; //Obrigado, Matheus Silver!
+					ClientPrefs.easteregg = true;
 					ClientPrefs.saveSettings();
-					FlxG.sound.play(Paths.sound('secretSound'));
-					FlxTween.tween(warnText, {alpha: 0}, 1, {
-						onComplete: function (twn:FlxTween) {
-							CoolUtil.browserLoad('https://youtu.be/ettaeKZHAwA');
-						}
+					FlxG.sound.play(Paths.sound('secretSound')); //what
+					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
+						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+							//Agora em WEBM
+							MusicBeatState.switchState(new VideoState('assets/videos/SMWGO', new TitleState()));
+						});
 					});
 				}
 			}

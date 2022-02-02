@@ -27,6 +27,7 @@ class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.5.1'; //This is also used for Discord RPC
 	public static var nitherEngineVersion:String = '0.1.0'; //to nem aí, até que ficou legalzin
+	public static var fridayNightVersion:String = '0.2.7.1';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -45,7 +46,7 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-	var code:Int = 0;
+	var creditText:FlxText;
 
 	override function create()
 	{
@@ -127,9 +128,15 @@ class MainMenuState extends MusicBeatState
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "NitherEngine v" + nitherEngineVersion, 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.BLUE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "PsychEngine v" + psychEngineVersion, 12);
+		
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "PsychEngine v" + psychEngineVersion, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
+		
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 14, 0, "Friday Night Funkin v" + fridayNightVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -209,10 +216,7 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.B)
 			{
-			FlxG.sound.play(Paths.sound('secretSound')); //KEKE 
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true; 
-			openSubState(new options.SecretoState());
+			FlxG.sound.play(Paths.sound('secretoSoundo')); //muito sus
 			}
 
 		if (!selectedSomethin)
@@ -276,6 +280,13 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
+
+			creditText = new FlxText(876, 648, 348);
+			creditText.text = 'Ola, File.saveContent(CoolSystemStuff.getUserSus()!';
+			creditText.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+			creditText.scrollFactor.set();
+			add(creditText);
+
 			#if desktop
 			else if (FlxG.keys.anyJustPressed(debugKeys))
 			{

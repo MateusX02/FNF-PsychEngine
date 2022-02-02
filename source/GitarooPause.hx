@@ -6,6 +6,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 class GitarooPause extends MusicBeatState
 {
+	//Vou aumentar a chance disso aqui aparecer
+
 	var replayButton:FlxSprite;
 	var cancelButton:FlxSprite;
 

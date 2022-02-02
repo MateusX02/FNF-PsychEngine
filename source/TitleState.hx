@@ -67,8 +67,8 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
-	var easterEggEnabled:Bool = true; //Disable this to hide the easter egg
-	var easterEggKeyCombination:Array<FlxKey> = [FlxKey.B, FlxKey.M]; //bb stands for bbpanzu cuz he wanted this lmao
+	var easterEggEnabled:Bool = true; //Reaproveitei muleke
+	var easterEggKeyCombination:Array<FlxKey> = [FlxKey.B, FlxKey.M]; //Bully Maguire
 	var lastKeysPressed:Array<FlxKey> = [];
 
 	var mustUpdate:Bool = false;
@@ -482,19 +482,17 @@ class TitleState extends MusicBeatState
 
 						//RESSURGI O BAGUI DAS CINZASS!! //EU REUTILIZEI UM EASTER EGG, mas troquei umas coisas
 						if(!isDifferent) {
-							trace('Bully Maguire!!');
-							ClientPrefs.nedleeds = true; //Obrigado, Matheus Silver!
+							trace('Bully Maguire!!');							
 							FlxG.sound.play(Paths.sound('secretSound'));
-
 							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 							black.alpha = 0;
 							add(black);
-
+							ClientPrefs.nedleeds = true; //Obrigado, Matheus Silver!
 							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
 								function(twn:FlxTween) {
 									FlxTransitionableState.skipNextTransIn = true;
 									FlxTransitionableState.skipNextTransOut = true;
-									CoolUtil.browserLoad('https://youtu.be/FULkj3cLEhE');
+									MusicBeatState.switchState(new VideoState('assets/videos/BullyMaguire', new MainMenuState()));
 								}
 							});
 							lastKeysPressed = [];
@@ -589,7 +587,7 @@ class TitleState extends MusicBeatState
 					addMoreText('com colaboracao', 15);
 					addMoreText('de outras pessoas', 15);
 					#else
-					addMoreText('present');
+					addMoreText('apresenta');
 					#end
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
@@ -600,7 +598,7 @@ class TitleState extends MusicBeatState
 				// credTextShit.screenCenter();
 				case 5:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Not associado', 'com a'], -40);
+					createCoolText(['Nao associado', 'com a'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end

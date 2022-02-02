@@ -72,16 +72,16 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], //From 0% to 19%
-		['Shit', 0.4], //From 20% to 39%
-		['Bad', 0.5], //From 40% to 49%
-		['Bruh', 0.6], //From 50% to 59%
-		['Meh', 0.69], //From 60% to 68%
-		['Nice', 0.7], //69%
-		['Good', 0.8], //From 70% to 79%
-		['Great', 0.9], //From 80% to 89%
-		['Sick!', 1], //From 90% to 99%
-		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['Pior jogador!', 0.2], //From 0% to 19%
+		['Merda!', 0.4], //From 20% to 39%
+		['Horrivel!', 0.5], //From 40% to 49%
+		['Da pro gasto!', 0.6], //From 50% to 59%
+		['Nyeh!', 0.69], //From 60% to 68%
+		['Boa!', 0.7], //69%
+		['Bom!', 0.8], //From 70% to 79%
+		['Otimo!', 0.9], //From 80% to 89%
+		['Maneiro!', 1], //From 90% to 99%
+		['Perfeito!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
 	
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
@@ -798,7 +798,7 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		if(ClientPrefs.gf){
+		if(ClientPrefs.personagens){
 			gf = new Character(0, 0, '1x1');
 		} else {
 		gf = new Character(0, 0, gfVersion);
@@ -822,15 +822,12 @@ class PlayState extends MusicBeatState
 		
 		if(ClientPrefs.personagens){
 			boyfriend = new Boyfriend(0, 0, '1x1');
-		if(ClientPrefs.bfreanimado){
-			boyfriend = new Boyfriend(0,0, 'bfreanim');
 		} else {
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
 		}
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
-		}
 		
 		var camPos:FlxPoint = new FlxPoint(gf.getGraphicMidpoint().x, gf.getGraphicMidpoint().y);
 		camPos.x += gf.cameraPosition[0];
@@ -1040,7 +1037,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY\nUnranked", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;

@@ -29,22 +29,22 @@ typedef AchievementFile =
 
 class Achievements {
 	public static var achievementShits:Array<Dynamic> = [//Name, Description, Achievement save tag, Unlocks after, Hidden achievement
-		//Set unlock after to "null" if it doesnt unlock after a week!!
-		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 null, 			true],
-		["She Calls Me Daddy Too",		"Beat Week 1 on Hard with no Misses.",				'week1_nomiss',			'week1', 		false],
-		["No More Tricks",				"Beat Week 2 on Hard with no Misses.",				'week2_nomiss',         'week2', 		false],
-		["Call Me The Hitman",			"Beat Week 3 on Hard with no Misses.",				'week3_nomiss',			'week3', 		false],
-		["Lady Killer",					"Beat Week 4 on Hard with no Misses.",				'week4_nomiss',			'week4', 		false],
-		["Missless Christmas",			"Beat Week 5 on Hard with no Misses.",				'week5_nomiss',			'week5',		false],
-		["Highscore!!",					"Beat Week 6 on Hard with no Misses.",				'week6_nomiss',			'week6',		false],
-		["Bandeira de pirata?",		"Easter Egg.",				'week7_nomiss',			'week7',		true],
-		["What a Funkin' Disaster!",	"Complete a Song with a rating lower than 20%.",	'ur_bad',				null, 			false],
-		["Perfectionist",				"Complete a Song with a rating of 100%.",			'ur_good',				null,			false],
-		["Roadkill Enthusiast",			"Watch the Henchmen die over 100 times.",			'roadkill_enthusiast',	null, 			false],
-		["Oversinging Much...?",		"Hold down a note for 10 seconds.",					'oversinging',			null,			false],
-		["Hyperactive",					"Finish a Song without going Idle.",				'hype',					null, 			false],
-		["Just the Two of Us",			"Finish a Song pressing only two keys.",			'two_keys',				null,			false],
-		["Toaster Gamer",				"Have you tried to run the game on a toaster?",		'toastie',				null,			false],
+		//Isso é inutilizavel, mas vou coisar tudo aqui
+		["O poder das setas... Na palma da minha mao",	"Yeah...",						'friday_night_play',	 null, 			true],
+		["Ela me chama de papai tambem!",		"Terminar a Week1 sem errar.",				'week1_nomiss',			'week1', 		false],
+		["Sem truques sujos",				"Terminar a Week2 sem errar.",				'week2_nomiss',         'week2', 		false],
+		["Me chame de Hitman!!",			"Terminar a Week3 sem errar.",				'week3_nomiss',			'week3', 		false],
+		["MS. Assasina!",					"Terminar a Week4 sem errar.",				'week4_nomiss',			'week4', 		false],
+		["Natal musical!",			"Terminar a Week5 sem errar.",				'week5_nomiss',			'week5',		false],
+		["Fanboy! ! !",					"Terminar a Week6 sem errar.",				'week6_nomiss',			'week6',		false],
+		["Bandeira de pirata?",		"O que vale mais?.",				'week7_nomiss',			'week7',		true],
+		["Um Funkin' desastre!",	"Complete uma musica com uma classificação menor que 20%.",	'ur_bad',				null, 			false],
+		["Perfeccionista",				"Completar uma musica com o rating de 100%.",			'ur_good',				null,			false],
+		["Psicopata",			"Assistir o Henchmen morrer 100 vezes. \nSem vezes.",			'roadkill_enthusiast',	null, 			false],
+		["Cordas vocais...?",		"Aperte uma nota por 10 segundos.",					'oversinging',			null,			false],
+		["Hiperativo!",					"Terminar uma musica sem fazer um Idle.",				'hype',					null, 			false],
+		["Apenas nos dois.",			"Terminar uma musica apertando apenas\nDUAS SETAS.",			'two_keys',				null,			false],
+		["Guerreiro",				"Voce e o melhor jogador e ainda joga com lag!",		'toastie',				null,			false],
 		["Bully Maguire",					"Bully Maguire poh.",	'debugger',				null,			true]
 	];
 
