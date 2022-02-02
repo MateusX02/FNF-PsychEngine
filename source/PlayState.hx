@@ -72,16 +72,16 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['Pior jogador!', 0.2], //From 0% to 19%
-		['Merda!', 0.4], //From 20% to 39%
-		['Horrivel!', 0.5], //From 40% to 49%
-		['Da pro gasto!', 0.6], //From 50% to 59%
-		['Nyeh!', 0.69], //From 60% to 68%
-		['Boa!', 0.7], //69%
-		['Bom!', 0.8], //From 70% to 79%
-		['Otimo!', 0.9], //From 80% to 89%
-		['Maneiro!', 1], //From 90% to 99%
-		['Perfeito!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['You Suck!', 0.2], //From 0% to 19%
+		['Shit', 0.4], //From 20% to 39%
+		['Bad', 0.5], //From 40% to 49%
+		['Bruh', 0.6], //From 50% to 59%
+		['Meh', 0.69], //From 60% to 68%
+		['Nice', 0.7], //69%
+		['Good', 0.8], //From 70% to 79%
+		['Great', 0.9], //From 80% to 89%
+		['Sick!', 1], //From 90% to 99%
+		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
 	
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
@@ -798,7 +798,7 @@ class PlayState extends MusicBeatState
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
 		}
 
-		if(ClientPrefs.personagens){
+		if(ClientPrefs.gf){
 			gf = new Character(0, 0, '1x1');
 		} else {
 		gf = new Character(0, 0, gfVersion);
@@ -819,7 +819,11 @@ class PlayState extends MusicBeatState
 		startCharacterLua(dad.curCharacter);
 		
 		
-		
+		if(ClientPrefs.bfreanimado){
+			boyfriend = new Boyfriend(0, 0, 'bfreanim');
+		} else {
+		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		}
 		if(ClientPrefs.personagens){
 			boyfriend = new Boyfriend(0, 0, '1x1');
 		} else {
@@ -1037,7 +1041,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY\nUnranked", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -2353,12 +2357,22 @@ if(psychDialogue != null) return;
 				persistentUpdate = false;
 				persistentDraw = true;
 				paused = true;
+				if(FlxG.sound.music != null) {
+					FlxG.sound.music.pause();
+					vocals.pause();
+				}
+				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				//}
+		
+				#if desktop
+				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				#end
+			}
 		}
-
 
 		if (FlxG.keys.anyJustPressed(debugKeysChart) && !endingSong && !inCutscene)
 		{
-			MusicBeatState.switchState(new editors.ChartingState());
+			openChartEditor();
 		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
@@ -2666,14 +2680,13 @@ if(psychDialogue != null) return;
 		persistentUpdate = false;
 		paused = true;
 		cancelMusicFadeTween();
-		MusicBeatState.switchState(new editors.ChartingState());
+		MusicBeatState.switchState(new ChartingState());
 		chartingMode = true;
 
 		#if desktop
 		DiscordClient.changePresence("Chart Editor", null, null, true);
 		#end
 	}
-}
 
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
 	function doDeathCheck(?skipHealthCheck:Bool = false) {
@@ -3241,7 +3254,7 @@ if(psychDialogue != null) return;
 
 			if (chartingMode)
 			{
-				MusicBeatState.switchState(new editors.ChartingState());
+				openChartEditor();
 				return;
 			}
 
@@ -3824,7 +3837,6 @@ if(psychDialogue != null) return;
 			// FlxG.log.add('played imss note');
 
 			/*boyfriend.stunned = true;
-
 			// get stunned for 1/60 of a second, makes you able to
 			new FlxTimer().start(1 / 60, function(tmr:FlxTimer)
 			{
