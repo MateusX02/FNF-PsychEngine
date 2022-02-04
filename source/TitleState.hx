@@ -62,7 +62,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
-	var matSpr:FlxSprite;
+	var matSpr:FlxSprite; //Pra falar a verdade, Tricky uiui
 
 	var curWacky:Array<String> = [];
 
@@ -75,6 +75,8 @@ class TitleState extends MusicBeatState
 	var mustUpdate:Bool = false;
 	
 	var titleJSON:TitleData;
+
+	public static var updateVersion:String = '';
 
 	override public function create():Void
 	{
@@ -124,6 +126,30 @@ class TitleState extends MusicBeatState
 			if(folders.length > 0) {
 				polymod.Polymod.init({modRoot: "mods", dirs: folders});
 			}
+		}
+		#end
+
+		#if CHECK_FOR_UPDATES
+		if(!closedState) {
+			trace('checking for update');
+			var http = new haxe.Http("https://raw.githubusercontent.com/ShadowMario/FNF-PsychEngine/main/gitVersion.txt");
+
+			http.onData = function (data:String)
+			{
+				updateVersion = data.split('\n')[0].trim();
+				var curVersion:String = MainMenuState.psychEngineVersion.trim();
+				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
+				if(updateVersion != curVersion) {
+					trace('versions arent matching!');
+					mustUpdate = true;
+				}
+			}
+
+			http.onError = function (error) {
+				trace('error: $error');
+			}
+
+			http.request();
 		}
 		#end
 
@@ -352,7 +378,7 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
-		matSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('mateusSpr'));
+		matSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('matSpr'));
 		add(matSpr);
 		matSpr.visible = false;
 		matSpr.setGraphicSize(Std.int(matSpr.width * 0.8));
@@ -434,6 +460,9 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
+					if (mustUpdate) {
+						MusicBeatState.switchState(new MainMenuState()); //preguiça jeej
+					} else {
 						MusicBeatState.switchState(new MainMenuState());
 					}
 					closedState = true;
