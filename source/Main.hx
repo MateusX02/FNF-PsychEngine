@@ -111,8 +111,6 @@ class Main extends Sprite
 		GlobalVideo.setWebm(webmHandle);
 		#end
 		
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
-
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
