@@ -46,8 +46,7 @@ class VideoState extends MusicBeatState
 	}
 
 	public override function update(dt:Float) {
-		for (touch in FlxG.touches.list)
-			if (touch.justReleased)
+		if(FlxG.keys.justPressed.ENTER)
 				onClose(); //hmmmm maybe
 
 		super.update(dt);	
