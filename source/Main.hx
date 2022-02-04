@@ -175,3 +175,4 @@ class Main extends Sprite
 				Sys.exit(1);
 			}
 		}	
+	}
