@@ -117,62 +117,6 @@ class Main extends Sprite
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
-
-		function onCrash(e:UncaughtErrorEvent):Void
-			{
-				var errMsg:String = "";
-				var path:String;
-				var callStack:Array<StackItem> = CallStack.exceptionStack(true);
-				var dateNow:String = Date.now().toString();
-		
-				dateNow = StringTools.replace(dateNow, " ", "_");
-				dateNow = StringTools.replace(dateNow, ":", "'");
-		
-				path = "./crash/" + "NE_" + dateNow + ".txt";
-		
-				for (stackItem in callStack)
-				{
-					switch (stackItem)
-					{
-						case FilePos(s, file, line, column):
-							errMsg += file + " (line " + line + ")\n";
-						default:
-							Sys.println(stackItem);
-					}
-				}
-		
-				errMsg += "\nErro não detectado: " + e.error + "\nPor favor reporte isso na página do Github: https://github.com/MateusX02/FNFNitherEngine";
-		
-				if (!FileSystem.exists("./crash/"))
-					FileSystem.createDirectory("./crash/");
-		
-				File.saveContent(path, errMsg + "\n");
-		
-				Sys.println(errMsg);
-				Sys.println("Crash dump saved in " + Path.normalize(path));
-		
-				var crashDialoguePath:String = "NE-CrashDialog";
-		
-				#if windows
-				crashDialoguePath += ".exe";
-				#end
-		
-				if (FileSystem.exists("./" + crashDialoguePath))
-				{
-					Sys.println("Found crash dialog: " + crashDialoguePath);
-		
-					#if linux
-					crashDialoguePath = "./" + crashDialoguePath;
-					#end
-					new Process(crashDialoguePath, [path]);
-				}
-				else
-				{
-					Sys.println("No crash dialog found! Making a simple alert instead...");
-					Application.current.window.alert(errMsg, "Error!");
-				}
-		
-				Sys.exit(1);
 			}
 		}	
 	}
