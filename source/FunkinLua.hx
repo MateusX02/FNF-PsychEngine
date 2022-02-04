@@ -1228,7 +1228,7 @@ class FunkinLua {
 				PlayState.instance.endSong();
 			} else {
 				PlayState.instance.startCountdown();
-			}				
+			}
 			#end
 		});
 		

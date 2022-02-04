@@ -62,6 +62,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var matSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -74,8 +75,6 @@ class TitleState extends MusicBeatState
 	var mustUpdate:Bool = false;
 	
 	var titleJSON:TitleData;
-	
-	public static var updateVersion:String = '';
 
 	override public function create():Void
 	{
@@ -125,30 +124,6 @@ class TitleState extends MusicBeatState
 			if(folders.length > 0) {
 				polymod.Polymod.init({modRoot: "mods", dirs: folders});
 			}
-		}
-		#end
-		
-		#if CHECK_FOR_UPDATES
-		if(!closedState) {
-			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/ShadowMario/FNF-PsychEngine/main/gitVersion.txt");
-			
-			http.onData = function (data:String)
-			{
-				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.psychEngineVersion.trim();
-				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
-				if(updateVersion != curVersion) {
-					trace('versions arent matching!');
-					mustUpdate = true;
-				}
-			}
-			
-			http.onError = function (error) {
-				trace('error: $error');
-			}
-			
-			http.request();
 		}
 		#end
 
@@ -377,6 +352,14 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
+		matSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('mateusSpr'));
+		add(matSpr);
+		matSpr.visible = false;
+		matSpr.setGraphicSize(Std.int(matSpr.width * 0.8));
+		matSpr.updateHitbox();
+		matSpr.screenCenter(X);
+		matSpr.antialiasing = ClientPrefs.globalAntialiasing;
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		if (initialized)
@@ -451,9 +434,6 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					if (mustUpdate) {
-						MusicBeatState.switchState(new MainMenuState()); //preguiça jeej
-					} else {
 						MusicBeatState.switchState(new MainMenuState());
 					}
 					closedState = true;
@@ -575,64 +555,34 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					#if PSYCH_WATERMARKS
 					createCoolText(['NitherEngine por'], 15);
-					#else
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-					#end
-				// credTextShit.visible = true;
 				case 3:
-					#if PSYCH_WATERMARKS
 					addMoreText('MateusX02', 15);
-					addMoreText('com colaboracao', 15);
-					addMoreText('de outras pessoas', 15);
-					#else
 					addMoreText('apresenta');
-					#end
-				// credTextShit.text += '\npresent...';
-				// credTextShit.addText();
+					matSpr.visible = true;
 				case 4:
 					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = 'In association \nwith';
-				// credTextShit.screenCenter();
+					matSpr.visible = false;
 				case 5:
-					#if PSYCH_WATERMARKS
 					createCoolText(['Nao associado', 'com a'], -40);
-					#else
-					createCoolText(['In association', 'with'], -40);
-					#end
 				case 7:
 					addMoreText('Newgrounds', -40);
 					ngSpr.visible = true;
-				// credTextShit.text += '\nNewgrounds';
 				case 8:
 					deleteCoolText();
 					ngSpr.visible = false;
-				// credTextShit.visible = false;
-
-				// credTextShit.text = 'Shoutouts Tom Fulp';
-				// credTextShit.screenCenter();
 				case 9:
 					createCoolText([curWacky[0]]);
-				// credTextShit.visible = true;
 				case 11:
 					addMoreText(curWacky[1]);
-				// credTextShit.text += '\nlmao';
 				case 12:
 					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = "Friday";
-				// credTextShit.screenCenter();
 				case 13:
 					addMoreText('FNF');
-				// credTextShit.visible = true;
 				case 14:
 					addMoreText('Nither');
-				// credTextShit.text += '\nNight';
 				case 15:
-					addMoreText('Engine'); // credTextShit.text += '\nFunkin';
-
+					addMoreText('Engine'); 
 				case 16:
 					skipIntro();
 			}
@@ -645,6 +595,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
+			remove(matSpr);
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

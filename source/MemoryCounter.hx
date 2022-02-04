@@ -39,4 +39,4 @@ class MemoryCounter extends TextField
 			text = "\nRAM: " + mem + " MB\nRAM maxima: " + memPeak + " MB";	
 		}
 	}
-} 
+}  
